@@ -11,29 +11,68 @@
   "license": "MIT",
   "private": true,
   "dependencies": {
-    "ez-game-engine": "EZtouch/ez-game-engine"
+    "tslib": "^1.9.0"
   },
   "devDependencies": {
+    "@types/jest": "^22.2.0",
     "cache-loader": "^1.2.2",
     "clean-webpack-plugin": "^0.1.19",
     "fork-ts-checker-webpack-plugin": "^0.4.1",
     "html-webpack-plugin": "^3.0.6",
+    "jest": "^22.4.2",
     "thread-loader": "^1.1.5",
+    "ts-jest": "^22.4.1",
     "ts-loader": "^4.0.1",
+    "ts-node": "^5.0.1",
     "tslint": "^5.9.1",
+    "tslint-eslint-rules": "^5.1.0",
+    "typedoc": "^0.11.1",
     "typescript": "^2.7.2",
     "uglifyjs-webpack-plugin": "^1.2.3",
+    "vrsource-tslint-rules": "^5.8.1",
     "webpack": "^4.1.1",
-    "webpack-cli": "^2.0.11",
+    "webpack-cli": "^2.0.12",
     "webpack-dev-server": "^3.1.1",
     "webpack-merge": "^4.1.2",
     "workbox-webpack-plugin": "^3.0.0"
   },
   "scripts": {
+    "lint": "tslint --format codeFrame 'src/**/*.ts' 'tests/**/*.ts'",
+    "lint:fix": "tslint --format codeFrame 'src/**/*.ts' 'tests/**/*.ts' --fix",
     "build": "webpack --config webpack.prod.js",
     "dev": "webpack --config webpack.dev.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:prod": "typedoc --out docs --target es5 --theme minimal --mode file src && yarn lint && yarn test --coverage --no-cache",
+    "deploy-docs": "ts-node tools/gh-pages-publish",
     "watch": "webpack --watch",
     "start": "webpack-dev-server --open --config webpack.dev.js"
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.tsx?$": "ts-jest"
+    },
+    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json",
+      "node"
+    ],
+    "coveragePathIgnorePatterns": [
+      "/node_modules/",
+      "/tests/"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 90,
+        "functions": 95,
+        "lines": 95,
+        "statements": 95
+      }
+    },
+    "collectCoverage": true
   }
 }
