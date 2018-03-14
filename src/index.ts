@@ -1,9 +1,8 @@
-import { EZGameEngine } from "ez-game-engine/dist/ez-game-engine.umd";
+import { EZGameEngine } from "./ez-game-engine";
 
 const test = new EZGameEngine();
-console.log(test);
 
-if (`serviceWorker` in navigator) {
+if (process.env.NODE_ENV === "production" && `serviceWorker` in navigator) {
     window.addEventListener(`load`, () => {
         navigator.serviceWorker.register(`/sw.js`).then((registration) => {
             console.log(`SW registered: `, registration);
