@@ -1,6 +1,8 @@
 {
     "defaultSeverity": "warning",
     "extends": [
+        "vrsource-tslint-rules",
+        "tslint-eslint-rules",
         "tslint:recommended"
     ],
     "jsRules": {},

@@ -9,8 +9,6 @@
         "strictNullChecks": true,
         "noImplicitThis": true,
         "alwaysStrict": true,
-        "noUnusedLocals": true,
-        "noUnusedParameters": true,
         "pretty": true,
         "removeComments": true,
         "preserveConstEnums": true,
@@ -18,13 +16,11 @@
         "experimentalDecorators": true,
         "lib": ["es2017", "dom"],
         "module": "es6",
-        "allowJs": true
-    }
-    // },
-    // "include": [
-    //     "./src/**/*"
-    // ],
-    // "exclude": [
-    //   "node_modules"
-    // ]
+        "allowJs": true,
+        "importHelpers": true
+    },
+    "files": [
+        "./src/**/*",
+        "./tests/**/*"
+    ]
 }
