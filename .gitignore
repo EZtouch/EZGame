@@ -7,6 +7,9 @@ commpiled
 .awcache
 .rpt2_cache
 
+# Ignore tools
+/tools
+
 # Ignore GitHub Pages Docs
 /docs
 
