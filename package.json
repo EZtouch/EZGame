@@ -39,14 +39,14 @@
   "scripts": {
     "lint": "tslint --format codeFrame 'src/**/*.ts' 'tests/**/*.ts'",
     "lint:fix": "tslint --format codeFrame 'src/**/*.ts' 'tests/**/*.ts' --fix",
-    "build": "webpack --config webpack.prod.js",
-    "dev": "webpack --config webpack.dev.js",
+    "build": "webpack --config webpack.prod.js --progress",
+    "dev": "webpack --config webpack.dev.js --progress",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:prod": "typedoc --out docs --target es5 --theme minimal --mode file src && yarn lint && yarn test --coverage --no-cache",
     "deploy-docs": "ts-node tools/gh-pages-publish",
     "watch": "webpack --watch",
-    "start": "webpack-dev-server --open --config webpack.dev.js"
+    "start": "webpack-dev-server --config webpack.dev.js"
   },
   "jest": {
     "transform": {
