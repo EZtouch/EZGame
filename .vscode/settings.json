@@ -22,5 +22,6 @@
         "coverage": true,
         "tools": true,
         ".cache-loader": true
-    }
+    },
+		"typescript.tsdk": "node_modules/typescript/lib"
 }
