@@ -1,0 +1,44 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Build (dev)",
+            "type": "shell",
+            "command": "yarn dev",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared"
+            }
+        },
+        {
+            "label": "Start (dev)",
+            "type": "shell",
+            "identifier": "start-dev",
+            "command": "yarn start",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared"
+            },
+            "isBackground": true,
+            "problemMatcher": {
+                "owner": "webpack-dev-server",
+                "pattern": { "regexp": "__________" },
+                "background": {
+					"activeOnStart": true,
+					"beginsPattern": "^Starting type checking and linting service\\.\\.\\.$",
+					"endsPattern": "^Time:.*$"
+				}
+            }
+        }
+    ]
+}
