@@ -54,7 +54,6 @@ jobs:
       - image: circleci/node:9.8.0
     steps:
       - checkout
-      - checkout
       - restore_cache:
           name: Restore Yarn Package Cache
           keys:
@@ -79,7 +78,7 @@ workflows:
     jobs:
       - build
       - test
-      - deploy_docs
-        requires:
-          - build
-          - test
+      - deploy_docs: 
+          requires:
+            - build
+            - test
