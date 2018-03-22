@@ -1,11 +1,30 @@
 {
     "defaultSeverity": "warning",
     "extends": [
-        "vrsource-tslint-rules",
         "tslint-eslint-rules",
+        "vrsource-tslint-rules",
         "tslint:recommended"
     ],
-    "jsRules": {},
-    "rules": {},
+    "jsRules": {
+        "no-console": false
+    },
+    "rules": {
+        "no-console": false,
+        "prefer-template": true,
+        "no-invalid-template-strings": true,
+        "no-unused-variable": [
+            true,
+            "check-parameters",
+            {
+                "ignore-pattern": "^_"
+            }
+        ],
+        "no-unused-expression": [
+            true,
+            "allow-new",
+            "allow-fast-null-checks",
+            "allow-tagged-template"
+        ]
+    },
     "rulesDirectory": []
 }

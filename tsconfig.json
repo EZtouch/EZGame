@@ -17,10 +17,15 @@
         "lib": ["es2017", "dom"],
         "module": "es6",
         "allowJs": true,
-        "importHelpers": true
+        "importHelpers": true,
+        "allowSyntheticDefaultImports": true
     },
-    "files": [
+    "include": [
         "./src/**/*",
         "./tests/**/*"
+    ],
+    "exclude": [
+        "./node_modules",
+        "./dist"
     ]
 }
