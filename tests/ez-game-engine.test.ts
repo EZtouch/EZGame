@@ -1,6 +1,5 @@
 import { Engine } from "../src/engine";
 import { EZGameEngine } from "../src/ez-game-engine";
-import { GameWindow } from "../src/game-window";
 import { SplashScreen } from "../src/splash-screen";
 
 /**
