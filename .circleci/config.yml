@@ -76,21 +76,24 @@ workflows:
   version: 2
   build_test_and_deploy_docs:
     jobs:
-      - build
-        branches:
-          only:
-            - master
-            - /^greenkeeper/.*$/
-      - test
-        branches:
+      - build:
+          filters:
+            branches:
+              only:
+                - master
+                - /^greenkeeper/.*$/
+      - test:
+          filters:
+            branches:
               only:
                 - master
                 - /^greenkeeper/.*$/
       - deploy_docs: 
-        branches:
-              only:
-                - master
-                - /^greenkeeper/.*$/
           requires:
             - build
             - test
+          filters:
+            branches:
+              only:
+                - master
+                - /^greenkeeper/.*$/
