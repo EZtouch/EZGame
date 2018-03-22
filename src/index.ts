@@ -2,7 +2,6 @@ import { EZGameEngine } from "./ez-game-engine";
 
 window.addEventListener("load", () => {
     new EZGameEngine();
-    This is a breaking build, ignore me!
 });
 
 if (process.env.NODE_ENV === "production" && "serviceWorker" in navigator) {
