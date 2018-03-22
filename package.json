@@ -19,7 +19,7 @@
     "clean-webpack-plugin": "^0.1.19",
     "fork-ts-checker-webpack-plugin": "^0.4.1",
     "html-webpack-plugin": "^3.0.7",
-    "jest": "^22.4.2",
+    "jest": "^22.4.3",
     "thread-loader": "^1.1.5",
     "ts-jest": "^22.4.2",
     "ts-loader": "^4.1.0",
@@ -37,14 +37,15 @@
     "workbox-webpack-plugin": "^3.0.0"
   },
   "scripts": {
-    "lint": "tslint --format codeFrame 'src/**/*.ts' 'tests/**/*.ts'",
-    "lint:fix": "tslint --format codeFrame 'src/**/*.ts' 'tests/**/*.ts' --fix",
+    "lint": "tslint --format codeFrame --project .",
+    "lint:fix": "yarn lint --fix",
     "build": "webpack --config webpack.prod.js --progress",
     "dev": "webpack --config webpack.dev.js --progress",
     "test": "jest",
-    "test:watch": "jest --watch",
-    "test:prod": "typedoc --out docs --target es5 --theme minimal --mode file src && yarn lint && yarn test --coverage --no-cache",
-    "deploy-docs": "ts-node tools/gh-pages-publish",
+    "test:watch": "yarn test --watch",
+    "test:prod": "yarn test --coverage --no-cache",
+    "docs": "typedoc --out docs --target es6 --theme minimal --mode file src",
+    "deploy-docs": "yarn docs && ts-node tools/gh-pages-publish",
     "watch": "webpack --watch",
     "start": "webpack-dev-server --config webpack.dev.js"
   },
@@ -63,7 +64,8 @@
     ],
     "coveragePathIgnorePatterns": [
       "/node_modules/",
-      "/tests/"
+      "/tests/",
+      "/dist/"
     ],
     "coverageThreshold": {
       "global": {
