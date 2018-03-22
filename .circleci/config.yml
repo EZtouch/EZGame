@@ -4,10 +4,6 @@ jobs:
     working_directory: ~/repo
     docker:
       - image: circleci/node:9.8.0
-    branches:
-      only:
-        - master
-        - /^greenkeeper/.*$/
     steps:
       - checkout
       - restore_cache:
@@ -32,10 +28,6 @@ jobs:
     working_directory: ~/repo
     docker:
       - image: circleci/node:9.8.0
-    branches:
-      only:
-        - master
-        - /^greenkeeper/.*$/
     steps:
       - checkout
       - restore_cache:
@@ -60,10 +52,6 @@ jobs:
     working_directory: ~/repo
     docker:
       - image: circleci/node:9.8.0
-    branches:
-      only:
-        - master
-        - /^greenkeeper/.*$/
     steps:
       - checkout
       - restore_cache:
@@ -89,8 +77,20 @@ workflows:
   build_test_and_deploy_docs:
     jobs:
       - build
+        branches:
+          only:
+            - master
+            - /^greenkeeper/.*$/
       - test
+        branches:
+              only:
+                - master
+                - /^greenkeeper/.*$/
       - deploy_docs: 
+        branches:
+              only:
+                - master
+                - /^greenkeeper/.*$/
           requires:
             - build
             - test
