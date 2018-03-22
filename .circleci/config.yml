@@ -1,74 +1,69 @@
+image_config: &image_config
+  working_directory: ~/repo
+  docker:
+    - image: circleci/node:9.8.0
+
+ignore_ghpages: &ignore_ghpages
+  filters:
+    branches:
+      ignore:
+        - gh-page
+
+restore_cache_config: &restore_cache_config
+  name: Restore Yarn Package Cache
+  keys:
+    - yarn-packages-{{ .Branch }}-{{ checksum "yarn.lock" }}
+    - yarn-packages-{{ .Branch }}
+    - yarn-packages-master
+    - yarn-packages-
+
+save_cache_config: &save_cache_config
+  name: Save Yarn Package Cache
+  key: yarn-packages-{{ .Branch }}-{{ checksum "yarn.lock" }}
+  paths:
+    - node_modules/
+
 version: 2
 jobs:
   build:
-    working_directory: ~/repo
-    docker:
-      - image: circleci/node:9.8.0
+    <<: *image_config
     steps:
       - checkout
       - restore_cache:
-          name: Restore Yarn Package Cache
-          keys:
-            - yarn-packages-{{ .Branch }}-{{ checksum "yarn.lock" }}
-            - yarn-packages-{{ .Branch }}
-            - yarn-packages-master
-            - yarn-packages-
+          <<: *restore_cache_config
       - run:
           name: Install Dependencies
           command: yarn install
       - save_cache:
-          name: Save Yarn Package Cache
-          key: yarn-packages-{{ .Branch }}-{{ checksum "yarn.lock" }}
-          paths:
-            - node_modules/
+          <<: *save_cache_config
       - run:
           name: build
           command: yarn build
   test:
-    working_directory: ~/repo
-    docker:
-      - image: circleci/node:9.8.0
+    <<: *image_config
     steps:
       - checkout
       - restore_cache:
-          name: Restore Yarn Package Cache
-          keys:
-            - yarn-packages-{{ .Branch }}-{{ checksum "yarn.lock" }}
-            - yarn-packages-{{ .Branch }}
-            - yarn-packages-master
-            - yarn-packages-
+          <<: *restore_cache_config
       - run:
           name: Install Dependencies
           command: yarn install
       - save_cache:
-          name: Save Yarn Package Cache
-          key: yarn-packages-{{ .Branch }}-{{ checksum "yarn.lock" }}
-          paths:
-            - node_modules/
+          <<: *save_cache_config
       - run:
           name: test
           command: yarn test:prod
   deploy_docs:
-    working_directory: ~/repo
-    docker:
-      - image: circleci/node:9.8.0
+    <<: *image_config
     steps:
       - checkout
       - restore_cache:
-          name: Restore Yarn Package Cache
-          keys:
-            - yarn-packages-{{ .Branch }}-{{ checksum "yarn.lock" }}
-            - yarn-packages-{{ .Branch }}
-            - yarn-packages-master
-            - yarn-packages-
+          <<: *restore_cache_config
       - run:
           name: Install Dependencies
           command: yarn install
       - save_cache:
-          name: Save Yarn Package Cache
-          key: yarn-packages-{{ .Branch }}-{{ checksum "yarn.lock" }}
-          paths:
-            - node_modules/
+          <<: *save_cache_config
       - run:
           name: deploy_docs
           command: yarn deploy-docs
@@ -77,20 +72,11 @@ workflows:
   build_test_and_deploy_docs:
     jobs:
       - build:
-          filters:
-            branches:
-              ignore:
-                - gh-page
+          <<: *ignore_ghpages
       - test:
-          filters:
-            branches:
-              ignore:
-                - gh-page
+          <<: *ignore_ghpages
       - deploy_docs: 
           requires:
             - build
             - test
-          filters:
-            branches:
-              ignore:
-                - gh-page
+          <<: *ignore_ghpages
