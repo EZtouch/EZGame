@@ -79,21 +79,18 @@ workflows:
       - build:
           filters:
             branches:
-              only:
-                - master
-                - /^greenkeeper/.*$/
+              ignore:
+                - gh-page
       - test:
           filters:
             branches:
-              only:
-                - master
-                - /^greenkeeper/.*$/
+              ignore:
+                - gh-page
       - deploy_docs: 
           requires:
             - build
             - test
           filters:
             branches:
-              only:
-                - master
-                - /^greenkeeper/.*$/
+              ignore:
+                - gh-page
