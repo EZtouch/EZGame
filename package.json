@@ -1,15 +1,62 @@
 {
   "name": "ezgame",
   "version": "1.0.0",
+  "private": true,
   "description": "A TypeScript-based game utilizing the EZGameEngine.",
+  "keywords": [
+    "game"
+  ],
+  "license": "MIT",
+  "author": "EZtouch <EZBotBusiness@GMail.com>",
+  "files": [
+    "dist"
+  ],
   "main": "./dist/index.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/EZtouch/EZGame.git"
   },
-  "author": "EZtouch",
-  "license": "MIT",
-  "private": true,
+  "scripts": {
+    "build": "webpack --config webpack.prod.js --progress",
+    "deploy-docs": "yarn docs && ts-node tools/gh-pages-publish",
+    "dev": "webpack --config webpack.dev.js --progress",
+    "docs": "typedoc --out docs --target es6 --theme minimal --mode file src",
+    "lint": "tslint --format codeFrame --project .",
+    "lint:fix": "yarn lint --fix",
+    "start": "webpack-dev-server --config webpack.dev.js",
+    "test": "jest",
+    "test:prod": "yarn test --coverage --no-cache",
+    "test:watch": "yarn test --watch",
+    "watch": "webpack --watch"
+  },
+  "jest": {
+    "collectCoverage": true,
+    "coveragePathIgnorePatterns": [
+      "/node_modules/",
+      "/tests/",
+      "/dist/"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 90,
+        "functions": 95,
+        "lines": 95,
+        "statements": 95
+      }
+    },
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json",
+      "node"
+    ],
+    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
+    "transform": {
+      "^.+\\.tsx?$": "ts-jest"
+    }
+  },
   "dependencies": {
     "tslib": "^1.9.0"
   },
@@ -35,46 +82,5 @@
     "webpack-dev-server": "^3.1.1",
     "webpack-merge": "^4.1.2",
     "workbox-webpack-plugin": "^3.0.0"
-  },
-  "scripts": {
-    "lint": "tslint --format codeFrame --project .",
-    "lint:fix": "yarn lint --fix",
-    "build": "webpack --config webpack.prod.js --progress",
-    "dev": "webpack --config webpack.dev.js --progress",
-    "test": "jest",
-    "test:watch": "yarn test --watch",
-    "test:prod": "yarn test --coverage --no-cache",
-    "docs": "typedoc --out docs --target es6 --theme minimal --mode file src",
-    "deploy-docs": "yarn docs && ts-node tools/gh-pages-publish",
-    "watch": "webpack --watch",
-    "start": "webpack-dev-server --config webpack.dev.js"
-  },
-  "jest": {
-    "transform": {
-      "^.+\\.tsx?$": "ts-jest"
-    },
-    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
-    "moduleFileExtensions": [
-      "ts",
-      "tsx",
-      "js",
-      "jsx",
-      "json",
-      "node"
-    ],
-    "coveragePathIgnorePatterns": [
-      "/node_modules/",
-      "/tests/",
-      "/dist/"
-    ],
-    "coverageThreshold": {
-      "global": {
-        "branches": 90,
-        "functions": 95,
-        "lines": 95,
-        "statements": 95
-      }
-    },
-    "collectCoverage": true
   }
 }
