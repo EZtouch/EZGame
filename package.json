@@ -61,7 +61,7 @@
     "tslib": "^1.9.0"
   },
   "devDependencies": {
-    "@types/jest": "^22.2.0",
+    "@types/jest": "^20.0.0",
     "cache-loader": "^1.2.2",
     "clean-webpack-plugin": "^0.1.19",
     "fork-ts-checker-webpack-plugin": "^0.4.1",
