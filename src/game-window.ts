@@ -1,3 +1,4 @@
+import "./style.css";
 export class GameWindow {
   public window: HTMLDivElement;
   constructor() {
@@ -7,12 +8,6 @@ export class GameWindow {
   private createGameWindow(): void {
     if (!document.getElementById("game-window")) {
       const gameWindow = document.createElement("div");
-      gameWindow.style.position = "absolute";
-      gameWindow.style.top = "0";
-      gameWindow.style.right = "0";
-      gameWindow.style.bottom = "0";
-      gameWindow.style.left = "0";
-      gameWindow.style.backgroundColor = "yellow";
       gameWindow.id = "game-window";
 
       const body = document.getElementsByTagName("body")[0];
