@@ -1,0 +1,26 @@
+#game-window {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: yellow;
+}
+
+#splash-screen {
+    width: 50vmin;
+    height: 50vmin;
+    background: grey;
+    color: white;
+}
+
+#alignment-window {
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+    /* TODO: Check justify content properties */
+    text-align: center;
+    vertical-align: center;
+    /* TODO: Check vertical align properties */
+    height: 100%;
+}

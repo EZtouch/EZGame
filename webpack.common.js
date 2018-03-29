@@ -25,11 +25,18 @@ module.exports = {
           {
             loader: "ts-loader",
             options: {
-              happyPackMode: true, 
+              happyPackMode: true,
               transpileOnly: true,
             },
           },
         ],
+      },
+      {
+        test: /\.css$/,
+        use: [
+          { loader: "style-loader" },
+          { loader: "css-loader" }
+        ]
       },
     ],
   },
