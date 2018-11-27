@@ -52,7 +52,7 @@
     "typedoc": "^0.11.1",
     "typescript": "^2.8.1",
     "uglifyjs-webpack-plugin": "^1.2.4",
-    "vrsource-tslint-rules": "^5.8.2",
+    "vrsource-tslint-rules": "^6.0.0",
     "webpack": "^4.4.1",
     "webpack-cli": "^2.0.13",
     "webpack-dev-server": "^3.1.1",
